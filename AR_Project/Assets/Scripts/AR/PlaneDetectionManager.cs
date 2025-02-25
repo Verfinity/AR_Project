@@ -23,8 +23,7 @@ public class PlaneDetectionManager : MonoBehaviour
         {
             foreach (var plane in planes.added)
             {
-                if (plane.alignment != PlaneAlignment.Vertical)
-                    plane.gameObject.SetActive(false);
+                plane.gameObject.SetActive(false);
             }
             return;
         }
