@@ -5,14 +5,10 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARPlaneManager))]
 public class PlaneDetectionManager : MonoBehaviour
 {
+    [SerializeField]
     private ARPlaneManager _planeManager;
 
     private bool _isFloorExists = false;
-
-    private void Awake()
-    {
-        _planeManager = GetComponent<ARPlaneManager>();
-    }
 
     private void OnPlanesChanged(ARPlanesChangedEventArgs planes)
     {
@@ -23,7 +19,8 @@ public class PlaneDetectionManager : MonoBehaviour
         {
             foreach (var plane in planes.added)
             {
-                plane.gameObject.SetActive(false);
+                if (plane.alignment != PlaneAlignment.Vertical)
+                    plane.gameObject.SetActive(false);
             }
             return;
         }
