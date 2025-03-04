@@ -4,7 +4,7 @@ public class GlobalEvents
 {
     private static GlobalEvents _instance = null;
 
-    public GlobalEvents GetInstance()
+    public static GlobalEvents GetInstance()
     {
         if (_instance == null)
             _instance = new GlobalEvents();
@@ -13,5 +13,5 @@ public class GlobalEvents
 
     public FurnitureInfo CurrentFurnitureChanged;
 
-    public delegate void FurnitureInfo(GameObject model, FurnitureType type);
+    public delegate void FurnitureInfo(GameObject? model, FurnitureType? type);
 }

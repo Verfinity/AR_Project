@@ -17,11 +17,15 @@ public class ItemController : MonoBehaviour
 
     private bool _isChosen = false;
 
+    private GlobalEvents _globalEvents;
+
     private void Awake()
     {
         _rt = GetComponent<RectTransform>();
         _contentController = GetComponentInParent<ContentController>();
         StartCoroutine(SetItemIdCoroutine());
+
+        _globalEvents = GlobalEvents.GetInstance();
     }
 
     private IEnumerator SetItemIdCoroutine()
@@ -44,7 +48,13 @@ public class ItemController : MonoBehaviour
     private void OnItemPressed(int pressedItemId)
     {
         if (_itemId == pressedItemId)
+        {
             _isChosen = !_isChosen;
+            if (_isChosen)
+                _globalEvents.CurrentFurnitureChanged?.Invoke(_model, _furnitureType);
+            else
+                _globalEvents.CurrentFurnitureChanged?.Invoke(null, null);
+        }
         else
             _isChosen = false;
 
