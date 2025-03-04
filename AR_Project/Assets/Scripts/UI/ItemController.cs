@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+    public event Action<bool> StateChanged;
+
     [SerializeField]
-    private float _persentOnPress = 0.8f;
+    private GameObject _model;
+    [SerializeField]
+    private FurnitureType _furnitureType;
 
     private RectTransform _rt;
     private ContentController _contentController;
@@ -23,8 +28,7 @@ public class ItemController : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        float leftSidePosition = _rt.anchoredPosition.x - _contentController.ItemWidth / 2;
-        _itemId = (int)Mathf.Round(leftSidePosition / _contentController.FullItemWidth);
+        _itemId = (int)Mathf.Floor(_rt.anchoredPosition.x / _contentController.FullItemWidth);
     }
 
     private void OnEnable()
@@ -34,7 +38,7 @@ public class ItemController : MonoBehaviour
 
     private void OnDisable()
     {
-        _contentController.ItemPressed += OnItemPressed;
+        _contentController.ItemPressed -= OnItemPressed;
     }
 
     private void OnItemPressed(int pressedItemId)
@@ -43,15 +47,7 @@ public class ItemController : MonoBehaviour
             _isChosen = !_isChosen;
         else
             _isChosen = false;
-        SetWidthByState(_isChosen);
-    }
 
-    private void SetWidthByState(bool state)
-    {
-        float size = _contentController.ItemWidth;
-        if (state)
-            size *= _persentOnPress;
-        _rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size);
-        _rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size);
+        StateChanged?.Invoke(_isChosen);
     }
 }

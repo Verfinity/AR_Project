@@ -33,7 +33,13 @@ public class ContentController : EventTrigger
         if (eventData.pointerId != _pointerId)
             return;
 
-        _itemId = GetItemId(eventData.position.x);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _rt,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        _itemId = GetItemId(localPoint.x);
     }
 
     public override void OnBeginDrag(PointerEventData eventData)
@@ -96,7 +102,6 @@ public class ContentController : EventTrigger
 
     private int GetItemId(float positionX)
     {
-        float absolutePosition = positionX - _rt.anchoredPosition.x;
-        return (int)(absolutePosition / FullItemWidth);
+        return (int)Mathf.Floor(positionX / FullItemWidth);
     }
 }
