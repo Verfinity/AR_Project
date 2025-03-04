@@ -5,7 +5,7 @@ public class ItemWidthController : MonoBehaviour
     [SerializeField]
     private ItemController _itemController;
     [SerializeField]
-    private float _pressPersent = 0.8f;
+    private float _pressPersent = 0.85f;
 
     private RectTransform _rt;
     private float size = 0;
@@ -33,10 +33,9 @@ public class ItemWidthController : MonoBehaviour
 
     private void SetWidthByState(bool state)
     {
-        float newSize = size;
+        float scale = 1;
         if (state)
-            newSize *= _pressPersent;
-        _rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newSize);
-        _rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newSize);
+            scale = _pressPersent;
+        _rt.localScale = new Vector2(scale, scale);
     }
 }
