@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.ARSubsystems;
 
 public class ItemController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ItemController : MonoBehaviour
     [SerializeField]
     private GameObject _model;
     [SerializeField]
-    private FurnitureType _furnitureType;
+    private PlaneAlignment _furnitureType;
 
     private RectTransform _rt;
     private ContentController _contentController;
@@ -51,9 +52,13 @@ public class ItemController : MonoBehaviour
         {
             _isChosen = !_isChosen;
             if (_isChosen)
-                _globalEvents.CurrentFurnitureChanged?.Invoke(_model, _furnitureType);
+                _globalEvents.CurrentFurnitureChanged?.Invoke(new Furniture
+                {
+                    FurnitureModel = _model,
+                    FurnitureType = _furnitureType
+                });
             else
-                _globalEvents.CurrentFurnitureChanged?.Invoke(null, null);
+                _globalEvents.CurrentFurnitureChanged?.Invoke(null);
         }
         else
             _isChosen = false;

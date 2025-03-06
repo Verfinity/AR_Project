@@ -16,5 +16,5 @@ public class GlobalEvents
 
     public FurnitureInfo CurrentFurnitureChanged;
 
-    public delegate void FurnitureInfo(GameObject? model, FurnitureType? type);
+    public delegate void FurnitureInfo(Furniture furniture);
 }
