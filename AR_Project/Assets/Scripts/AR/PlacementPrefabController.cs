@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Interaction.Toolkit.AR;
 
 [RequireComponent(typeof(ARPlacementInteractable))]
@@ -37,8 +38,6 @@ public class PlacementPrefabController : MonoBehaviour
             return;
         }
 
-        _logicPrefab.GetComponent<ARTranslationInteractable>().objectGestureTranslationMode =
-            type == FurnitureType.Horizontal ? GestureTransformationUtility.GestureTranslationMode.Horizontal : GestureTransformationUtility.GestureTranslationMode.Vertical;
         _placementInteractable.placementPrefab = _logicPrefab;
     }
 

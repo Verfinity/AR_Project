@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GlobalEvents
@@ -10,6 +11,8 @@ public class GlobalEvents
             _instance = new GlobalEvents();
         return _instance;
     }
+
+    public Action DeleteButtonPressed;
 
     public FurnitureInfo CurrentFurnitureChanged;
 

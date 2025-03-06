@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7909167217160341290}
   - component: {fileID: 7909167217160341291}
   - component: {fileID: 7909167217160341288}
+  - component: {fileID: -6405488891343726037}
   m_Layer: 0
   m_Name: LogicFurniturePrefab
   m_TagString: Untagged
@@ -357,3 +358,16 @@ MonoBehaviour:
   m_ARSessionOrigin: {fileID: 0}
   m_RotationRateDegreesDrag: 100
   m_RotationRateDegreesTwist: 2.5
+--- !u!114 &-6405488891343726037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909167217160341284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0fb094fc20a0744a6598811d8e0122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectionInteractable: {fileID: 7909167217160341290}
