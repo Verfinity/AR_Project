@@ -102,6 +102,6 @@ public class ContentController : EventTrigger
 
     private int GetItemId(float positionX)
     {
-        return (int)Mathf.Floor(positionX / FullItemWidth);
+        return (int)Math.Truncate(positionX / FullItemWidth);
     }
 }

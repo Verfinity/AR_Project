@@ -33,7 +33,7 @@ public class ItemController : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        _itemId = (int)Mathf.Floor(_rt.anchoredPosition.x / _contentController.FullItemWidth);
+        _itemId = (int)Math.Truncate(_rt.anchoredPosition.x / _contentController.FullItemWidth);
     }
 
     private void OnEnable()
