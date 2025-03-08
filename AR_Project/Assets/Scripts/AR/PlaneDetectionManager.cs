@@ -8,6 +8,8 @@ public class PlaneDetectionManager : MonoBehaviour
     [SerializeField]
     private ARPlaneManager _planeManager;
 
+    private bool _isFloorExists = false;
+
     private void OnPlanesChanged(ARPlanesChangedEventArgs planes)
     {
         if (planes.added.Count == 0)
@@ -17,6 +19,13 @@ public class PlaneDetectionManager : MonoBehaviour
         {
             if (plane.alignment == PlaneAlignment.NotAxisAligned)
                 plane.gameObject.SetActive(false);
+            else if (plane.alignment != PlaneAlignment.Vertical)
+            {
+                if (!_isFloorExists)
+                    _isFloorExists = true;
+                else
+                    plane.gameObject.SetActive(false);
+            }
         }
     }
 

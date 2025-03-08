@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 [RequireComponent(typeof(Image))]
 public class UIActiveController : MonoBehaviour
